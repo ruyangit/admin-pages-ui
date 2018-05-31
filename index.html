@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>skye-demo</title>
+  <style>
+    html,
+    body {
+      /* background-color: #1d1f20; */
+      margin: 0;
+      height: 100%;
+    }
+
+    .box {
+      height: 80px;
+      width: 80px;
+      position: relative;
+      top: calc(50% - 80px);
+      left: calc(50% - 50px);
+      perspective: 1000px;
+    }
+
+    .thing {
+      height: 40px;
+      width: 40px;
+      background-color: #E87722;
+      position: absolute;
+      box-sizing: border-box;
+      top: 0;
+      left: 0;
+    }
+
+    .thing:nth-of-type(1) {
+      animation: bounce 0.5s ease-in-out infinite alternate, move 4s -1s infinite;
+    }
+
+    .thing:nth-of-type(2) {
+      animation: bounce 0.5s ease-in-out infinite alternate, move 4s -2s infinite;
+    }
+
+    .thing:nth-of-type(3) {
+      animation: bounce 0.5s ease-in-out infinite alternate, move 4s -3s infinite;
+    }
+
+    .thing:nth-of-type(4) {
+      animation: bounce 0.5s ease-in-out infinite alternate, move 4s -4s infinite;
+    }
+
+    @keyframes bounce {
+      from {
+        transform: scale(1);
+      }
+
+      to {
+        transform: scale(0.8);
+      }
+    }
+
+    @keyframes move {
+      0% {
+        top: 0;
+        left: 0;
+        background-color: #E87722;
+      }
+
+      25% {
+        top: 0;
+        left: 50%;
+        background-color: #A4D65E;
+      }
+
+      50% {
+        top: 50%;
+        left: 50%;
+        background-color: #69B3E7;
+      }
+
+      75% {
+        top: 50%;
+        left: 0;
+        background-color: #FFC845;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" class="box">
+    <div class="thing"></div>
+    <div class="thing"></div>
+    <div class="thing"></div>
+    <div class="thing"></div>
+  </div>
+  <!-- built files will be auto injected -->
+</body>
+
+</html>
