@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Message, MessageBox} from 'element-ui'
-import { getToken } from '@/utils/auth'
+import { getCookies, removeCookies } from '@/utils/cookies'
+import _CONST from '@/utils/globalConfig'
 import store from '@/store'
 import qs from 'qs';
 
@@ -20,7 +21,7 @@ const service = axios.create({
 service.interceptors.request.use(config => {
     // Do something before request is sent
     if (store.getters["user/getToken"]) {
-        config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带token-- ['Authorization']为自定义key 请根据实际情况自行修改
+        config.headers['Authorization'] = 'Bearer ' + getCookies(_CONST.TOKEN) // 让每个请求携带token-- ['Authorization']为自定义key 请根据实际情况自行修改
     }
 
     // 在发送请求之前做某件事
@@ -63,9 +64,9 @@ service.interceptors.response.use(
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    store.dispatch('user/logout').then(() => {
-                        location.reload();// 为了重新实例化vue-router对象 避免bug
-                    });
+                    store.commit('user/setToken', null)
+                    removeCookies(_CONST.TOKEN);
+                    location.reload();// 为了重新实例化vue-router对象 避免bug
                 })
             }
             return Promise.reject(res);

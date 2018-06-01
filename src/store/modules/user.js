@@ -1,12 +1,13 @@
 // import Cookies from 'js-cookie'
 import { login, logout } from '@/api/login'
 import { userInfo } from '@/api/user'
-import { getToken, setToken, removeToken } from '@/utils/auth'
-
+import { getCookies, setCookies, removeCookies } from '@/utils/cookies'
+import { getStore, setStore, removeStore } from '@/utils/storage'
+import _CONST from '@/utils/globalConfig'
 
 const state = {
-    token: getToken(),
-    userInfo: {}
+    token: getCookies(_CONST.TOKEN),
+    userInfo: getStore(_CONST.USER_INFO)
 }
 
 const actions = {
@@ -16,33 +17,30 @@ const actions = {
 
         return new Promise((resolve, reject) => {
             login(loginName, user.password).then(response => {
-                const { data: { result, code } } = response
-                commit('setToken', result.access_token)
-                setToken(result.access_token)
+                const { data: { result: { access_token }, code } } = response
+                //存储登录信息
+                commit('setToken', access_token)
+                setCookies(_CONST.TOKEN, access_token)
                 resolve()
             }).catch(error => {
                 reject(error)
             })
         })
     },
-    ['logout']({ commit }) {
-        return new Promise((resolve, reject) => {
-            commit('setToken', '')
-            removeToken()
-            resolve()
-        })
+    async ['logout']({ commit }) {
+        const { data: { result, code } } = await logout();
+        if (result && code === 200) {
+            commit('setToken', null)
+            removeStore(_CONST.USER_INFO)
+            removeCookies(_CONST.TOKEN)
+        }
     },
-    ['userInfo']({ commit }) {
-        return new Promise((resolve, reject) => {
-            userInfo().then(response => {
-                console.log(response);
-                //commit('setToken', '')
-                //removeToken()
-                resolve()
-            }).catch(error => {
-                reject(error)
-            })
-        })
+    async ['userInfo']({ commit }) {
+        const { data: { result, code } } = await userInfo();
+        if (result && code === 200) {
+            commit('setUserInfo', result)
+            setStore(_CONST.USER_INFO, result)
+        }
     },
 }
 
@@ -50,11 +48,8 @@ const mutations = {
 
     ['setToken'](state, payload) {
         state.token = payload
-        //setStore('access_token', payload.access_token)
-        //setStore('expires_in', payload.expires_in)
-        //setStore('token_type', payload.token_type)
-        // Cookies.set('token', payload.access_token, { expires: (payload.expires_in / 86400) });
     },
+
     ['setUserInfo'](state, payload) {
         state.userInfo = payload
     }
