@@ -61,7 +61,7 @@ const getters = {
         return state.token;
     },
     ['getUserInfo'](state) {
-        return state.getUserInfo;
+        return state.userInfo;
     },
 }
 
