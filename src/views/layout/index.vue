@@ -21,7 +21,7 @@ export default {
     // if (!this.homeData.product) {
     //     this.showLoading = true;
     // }
-    this.$store.dispatch("user/userInfo");
+    //this.$store.dispatch("user/userInfo");
     
   },
   beforeCreate(){

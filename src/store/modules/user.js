@@ -11,7 +11,7 @@ const state = {
 }
 
 const actions = {
-    ['login']({ commit, rootState: { route: { path } } }, user) {
+    ['login']({ commit, dispatch }, user) {
 
         const loginName = user.loginName.trim()
 
@@ -21,6 +21,9 @@ const actions = {
                 //存储登录信息
                 commit('setToken', access_token)
                 setCookies(_CONST.TOKEN, access_token)
+
+                //登录成功获取用户信息
+                dispatch('userInfo')
                 resolve()
             }).catch(error => {
                 reject(error)
