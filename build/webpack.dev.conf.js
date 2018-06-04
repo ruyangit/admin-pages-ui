@@ -13,6 +13,9 @@ const portfinder = require('portfinder')
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
+//add
+const entris = require('./entris')
+
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
@@ -25,7 +28,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [
-        { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
+        // { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
+        { from: /\//, to: '/test1/index.html' },
+        { from: /\/test1$/, to: '/test1/index.html' },
+        { from: /\/test2$/, to: '/test2/index.html' },
+        { from: /\/test3$/, to: '/test3/index.html' }
       ],
     },
     hot: true,
@@ -52,11 +59,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
-      inject: true
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'index.html',
+    //   template: 'index.html',
+    //   inject: true
+    // }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
@@ -67,6 +74,24 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     ])
   ]
 })
+
+Object.keys(entris).forEach(function (entry) {
+  console.log(entry);
+  devWebpackConfig.plugins.push(
+    new HtmlWebpackPlugin({
+      isProd: false,
+      chunks: ['vendors', entry],
+      filename: entry + '/index.html',
+      template: 'src/template/index.html',
+      inject: true
+    })
+  )
+})
+// Object.keys(devWebpackConfig.entry).forEach(function(name) {
+//   console.log(name);
+//   devWebpackConfig.entry[name] = ['./build/dev-client'].concat(devWebpackConfig.entry[name])
+// })
+
 
 module.exports = new Promise((resolve, reject) => {
   portfinder.basePort = process.env.PORT || config.dev.port
@@ -85,8 +110,8 @@ module.exports = new Promise((resolve, reject) => {
           messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`],
         },
         onErrors: config.dev.notifyOnErrors
-        ? utils.createNotifierCallback()
-        : undefined
+          ? utils.createNotifierCallback()
+          : undefined
       }))
 
       resolve(devWebpackConfig)

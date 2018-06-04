@@ -1,19 +1,28 @@
 'use strict'
+// 基础配置文件
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
+// 定义的路径拼接方法(join直接的拼接, path.resolve等于在终端输入路径)
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
+//add
+const entris = require('./entris')
 
+/*
+    __dirname 指的是当前你这个当前文件在 硬盘文件夹全路径 
+    例如这个base.conf.js文件是在 build文件夹里
+    那么 __dirname = /硬盘路径/build
+*/
 
-module.exports = {
+const baseWebpackConfig = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    vendors: ['vue']
   },
   output: {
     path: config.build.assetsRoot,
@@ -88,3 +97,5 @@ module.exports = {
     child_process: 'empty'
   }
 }
+baseWebpackConfig.entry = Object.assign(baseWebpackConfig.entry, entris)
+module.exports = baseWebpackConfig
