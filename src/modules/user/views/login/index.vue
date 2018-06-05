@@ -37,134 +37,134 @@
 </template>
 
 <script>
-    import {
-        mapGetters
-    } from "vuex";
-    export default {
-        data() {
-            return {
-                form: {
-                    loginName: "ruyang@fosun.com",
-                    password: "1",
-                    // captchaImage: ""
-                },
-                rules: {
-                    loginName: [{
-                            required: true,
-                            message: "请输入集团邮箱账户",
-                            trigger: "blur"
-                        },
-                        {
-                            type: "email",
-                            message: "请输入正确的邮箱格式",
-                            trigger: ["blur", "change"]
-                        }
-                    ]
-                },
-                fullscreenLoading: false
-            };
-        },
-        methods: {
-            submitForm(formName) {
-                this.$refs[formName].validate(valid => {
-                    if (valid) {
-                        this.fullscreenLoading = true;
-                        this.$store
-                            .dispatch("user/login", this.form)
-                            .then(() => {
-                                this.fullscreenLoading = false;
-                                this.$router.push({
-                                    path: "/"
-                                });
-                            })
-                            .catch(() => {
-                                this.fullscreenLoading = false;
-                            });
-                    } else {
-                        console.log("error submit!!");
-                        return false;
-                    }
-                });
-            }
-        }
+import { mapGetters } from "vuex";
+export default {
+  name: "user-login",
+  data() {
+    return {
+      form: {
+        loginName: "ruyang@fosun.com",
+        password: "1"
+        // captchaImage: ""
+      },
+      rules: {
+        loginName: [
+          {
+            required: true,
+            message: "请输入集团邮箱账户",
+            trigger: "blur"
+          },
+          {
+            type: "email",
+            message: "请输入正确的邮箱格式",
+            trigger: ["blur", "change"]
+          }
+        ]
+      },
+      fullscreenLoading: false
     };
+  },
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.fullscreenLoading = true;
+          this.$store
+            .dispatch("user/login", this.form)
+            .then(() => {
+              this.fullscreenLoading = false;
+              this.$router.push({
+                path: "/"
+              });
+            })
+            .catch(() => {
+              this.fullscreenLoading = false;
+            });
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    }
+  }
+};
 </script>
 
 <style lang="less">
-    @height: 60px;
-    .container--login {
-        .el-header {
-            width: 100%;
-            .container {
-                padding: 0;
-                height: @height;
-                box-sizing: border-box;
-                h1 {
-                    margin: 0;
-                    float: left;
-                    font-size: 32px;
-                    font-weight: 400;
-                }
-                .skye-logo {
-                    height: @height;
-                    width: 120px;
-                }
-            }
-        }
-        .main {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 80px;
-            bottom: 80px;
-            height: 85%;
-            .container {
-                width: 100%;
-                height: 100%;
-                display: table;
-                .el-form {
-                    display: table-cell;
-                    vertical-align: middle;
-                    width: 300px;
-                    padding-bottom: 100px;
-                }
-                .el-button {
-                    width: 100%;
-                }
-                &::before,
-                &::after {
-                    display: table;
-                    content: " ";
-                }
-                .forget {
-                    color: #8f9bb2;
-                    font-size: 12px;
-                    &:hover {
-                        color: #409eff;
-                    }
-                }
-            }
-        }
-        .copyright {
-            width: 100%;
-            text-align: center;
-            color: #8f9bb2;
-            bottom: 30px;
-            position: fixed;
-            font-size: 14px;
-        }
-        .el-input-group__append {
-            background-color: transparent;
-        }
-        .captcha-image {
-            .el-input-group__append {
-                padding: 0;
-                background-color: #eee;
-                img {
-                    width: 100px;
-                    height: 35px;
-                }
-            }
-        }
+@height: 60px;
+.container--login {
+  .el-header {
+    width: 100%;
+    .container {
+      padding: 0;
+      height: @height;
+      box-sizing: border-box;
+      h1 {
+        margin: 0;
+        float: left;
+        font-size: 32px;
+        font-weight: 400;
+      }
+      .skye-logo {
+        height: @height;
+        width: 120px;
+      }
     }
+  }
+  .main {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 80px;
+    bottom: 80px;
+    height: 85%;
+    .container {
+      width: 100%;
+      height: 100%;
+      display: table;
+      .el-form {
+        display: table-cell;
+        vertical-align: middle;
+        width: 300px;
+        padding-bottom: 100px;
+      }
+      .el-button {
+        width: 100%;
+      }
+      &::before,
+      &::after {
+        display: table;
+        content: " ";
+      }
+      .forget {
+        color: #8f9bb2;
+        font-size: 12px;
+        &:hover {
+          color: #409eff;
+        }
+      }
+    }
+  }
+  .copyright {
+    width: 100%;
+    text-align: center;
+    color: #8f9bb2;
+    bottom: 30px;
+    position: fixed;
+    font-size: 14px;
+  }
+  .el-input-group__append {
+    background-color: transparent;
+  }
+  .captcha-image {
+    .el-input-group__append {
+      padding: 0;
+      background-color: #eee;
+      img {
+        width: 100px;
+        height: 35px;
+      }
+    }
+  }
+}
 </style>

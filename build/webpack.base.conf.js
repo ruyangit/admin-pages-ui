@@ -31,6 +31,14 @@ const baseWebpackConfig = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
+
+  /**
+   * 移除 element-ui 组件库 通过外部cdn的方式引用
+   */
+  externals: {
+    vue: 'Vue',
+    'element-ui': 'ELEMENT'
+  },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {

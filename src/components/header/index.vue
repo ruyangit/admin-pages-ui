@@ -78,214 +78,214 @@
 </template>
 
 <script>
-    export default {
-        name: 'main-header',
-        data() {
-            return {
-                userDropdownVisible: true,
-                langDropdownVisible: true,
-            }
-        },
-        methods: {
-            handleUserDropdownToggle(visible) {
-                this.userDropdownVisible = visible;
-            },
-            handleLangDropdownToggle(visible) {
-                this.langDropdownVisible = visible;
-            },
-            handleCommand(command) {
-                this.$message('click on item ' + command);
-                this.$router.push({
-                    path: command
-                });
-            }
-        },
-        computed: {
-            isLoginPage() {
-                console.log(this.$route.name);
-                return /^Login/.test(this.$route.name);
-            }
-        }
+export default {
+  name: "main-header",
+  data() {
+    return {
+      userDropdownVisible: true,
+      langDropdownVisible: true
     };
+  },
+  methods: {
+    handleUserDropdownToggle(visible) {
+      this.userDropdownVisible = visible;
+    },
+    handleLangDropdownToggle(visible) {
+      this.langDropdownVisible = visible;
+    },
+    handleCommand(command) {
+      this.$message("click on item " + command);
+      this.$router.push({
+        path: command
+      });
+    }
+  },
+  computed: {
+    isLoginPage() {
+      console.log(this.$route.name);
+      return /^Login/.test(this.$route.name);
+    }
+  }
+};
 </script>
 
 <style scoped lang="less">
-    @height: 60px;
-    .container--header {
-        padding:  0 20px 20px;
-        height: @height;
-        width: 100%;
-        box-sizing: border-box;
-        background-color: #f5f7fa;
-        border-bottom: 1px solid #e6e9f0;
-        h1 {
-            margin: 0;
-            float: left;
-        }
-        .skye-logo {
-            height: @height;
-            width: 120px;
-        }
-        .nav {
-            float: right;
-            height: 100%;
-            line-height: @height;
-            background: transparent; // @utils-clearfix;
-            padding: 0;
-            margin: 0;
-        }
-        .nav-gap {
-            position: relative;
-            width: 1px;
-            height: @height;
-            padding: 0 20px;
-            &::before {
-                content: '';
-                position: absolute;
-                top: calc(50% - 8px);
-                width: 1px;
-                height: 16px;
-                background: #ebebeb;
-            }
-        } // .nav-logo,
-        // .nav-logo-small {
-        //     vertical-align: sub;
-        // }
-        // .nav-logo-small {
-        //     display: none;
-        // }
-        .nav-item {
-            margin: 0;
-            float: left;
-            list-style: none;
-            position: relative;
-            cursor: pointer;
-            font-size: 14px;
-            &.nav-algolia-search {
-                cursor: default;
-            }
-            &.lang-item,
-            &:last-child {
-                cursor: default; // margin-left: 34px;
-                span {
-                    opacity: .8;
-                }
-                .nav-lang {
-                    cursor: pointer;
-                    display: inline-block;
-                    height: 100%;
-                    color: #888;
-                    &:hover {
-                        color: #409EFF;
-                    }
-                    &.active {
-                        font-weight: bold;
-                        color: #409EFF;
-                    }
-                }
-            }
-            a {
-                text-decoration: none;
-                color: #888;
-                display: block;
-                padding: 0 22px;
-                &.active,
-                &:hover {
-                    color: #333;
-                }
-                &.active::after {
-                    content: '';
-                    display: inline-block;
-                    position: absolute;
-                    bottom: 0;
-                    left: calc(50% - 7px);
-                    width: 14px;
-                    height: 4px;
-                    background: #409EFF;
-                }
-            }
-        }
-        .nav-dropdown {
-            margin-bottom: 6px;
-            padding-left: 18px;
-            width: 100%;
-            span {
-                display: block;
-                width: 100%;
-                font-size: 14px;
-                color: #888;
-                line-height: 40px;
-                transition: .2s;
-                padding-bottom: 6px;
-                user-select: none;
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-            i {
-                transition: .2s;
-                font-size: 12px;
-                color: #979797;
-                transform: translateY(-2px);
-            }
-            &.is-active {
-                span,
-                i {
-                    color: #409EFF;
-                }
-                i {
-                    transform: rotateZ(180deg) translateY(3px);
-                }
-            }
-            &:hover {
-                span,
-                i {
-                    color: #409EFF;
-                }
-            }
-        } // .el-menu {
-        //     float: right;
-        //     height: 100%;
-        //     background: transparent;
-        //     padding: 0;
-        //     margin: 0;
-        //     border-right: 0;
-        // }
-        // .el-menu--horizontal {
-        //     border-bottom: 0;
-        //     &>.el-menu-item {
-        //         border-bottom: 0;
-        //         &.is-active {
-        //             color: #409eff;
-        //             border-bottom: 0;
-        //             &::after {
-        //                 content: "";
-        //                 display: inline-block;
-        //                 position: absolute;
-        //                 bottom: 0;
-        //                 left: calc(50% - 7px);
-        //                 width: 14px;
-        //                 height: 4px;
-        //                 background: #409eff;
-        //             }
-        //         }
-        //     }
-        // }
-        // .el-menu-item:focus,
-        // .el-menu-item:hover {
-        //     background-color: transparent;
-        // }
-        // .work {
-        //     &.el-menu--horizontal {
-        //         &>.el-menu-item {
-        //             &.is-active {
-        //                 color: #909399;
-        //                 &::after {
-        //                     display: none;
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+@height: 60px;
+.container--header {
+  padding: 0 20px 20px;
+  height: @height;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f5f7fa;
+  border-bottom: 1px solid #e6e9f0;
+  h1 {
+    margin: 0;
+    float: left;
+  }
+  .skye-logo {
+    height: @height;
+    width: 120px;
+  }
+  .nav {
+    float: right;
+    height: 100%;
+    line-height: @height;
+    background: transparent; // @utils-clearfix;
+    padding: 0;
+    margin: 0;
+  }
+  .nav-gap {
+    position: relative;
+    width: 1px;
+    height: @height;
+    padding: 0 20px;
+    &::before {
+      content: "";
+      position: absolute;
+      top: calc(50% - 8px);
+      width: 1px;
+      height: 16px;
+      background: #ebebeb;
     }
+  } // .nav-logo,
+  // .nav-logo-small {
+  //     vertical-align: sub;
+  // }
+  // .nav-logo-small {
+  //     display: none;
+  // }
+  .nav-item {
+    margin: 0;
+    float: left;
+    list-style: none;
+    position: relative;
+    cursor: pointer;
+    font-size: 14px;
+    &.nav-algolia-search {
+      cursor: default;
+    }
+    &.lang-item,
+    &:last-child {
+      cursor: default; // margin-left: 34px;
+      span {
+        opacity: 0.8;
+      }
+      .nav-lang {
+        cursor: pointer;
+        display: inline-block;
+        height: 100%;
+        color: #888;
+        &:hover {
+          color: #409eff;
+        }
+        &.active {
+          font-weight: bold;
+          color: #409eff;
+        }
+      }
+    }
+    a {
+      text-decoration: none;
+      color: #888;
+      display: block;
+      padding: 0 22px;
+      &.active,
+      &:hover {
+        color: #333;
+      }
+      &.active::after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        bottom: 0;
+        left: calc(50% - 7px);
+        width: 14px;
+        height: 4px;
+        background: #409eff;
+      }
+    }
+  }
+  .nav-dropdown {
+    margin-bottom: 6px;
+    padding-left: 18px;
+    width: 100%;
+    span {
+      display: block;
+      width: 100%;
+      font-size: 14px;
+      color: #888;
+      line-height: 40px;
+      transition: 0.2s;
+      padding-bottom: 6px;
+      user-select: none;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    i {
+      transition: 0.2s;
+      font-size: 12px;
+      color: #979797;
+      transform: translateY(-2px);
+    }
+    &.is-active {
+      span,
+      i {
+        color: #409eff;
+      }
+      i {
+        transform: rotateZ(180deg) translateY(3px);
+      }
+    }
+    &:hover {
+      span,
+      i {
+        color: #409eff;
+      }
+    }
+  } // .el-menu {
+  //     float: right;
+  //     height: 100%;
+  //     background: transparent;
+  //     padding: 0;
+  //     margin: 0;
+  //     border-right: 0;
+  // }
+  // .el-menu--horizontal {
+  //     border-bottom: 0;
+  //     &>.el-menu-item {
+  //         border-bottom: 0;
+  //         &.is-active {
+  //             color: #409eff;
+  //             border-bottom: 0;
+  //             &::after {
+  //                 content: "";
+  //                 display: inline-block;
+  //                 position: absolute;
+  //                 bottom: 0;
+  //                 left: calc(50% - 7px);
+  //                 width: 14px;
+  //                 height: 4px;
+  //                 background: #409eff;
+  //             }
+  //         }
+  //     }
+  // }
+  // .el-menu-item:focus,
+  // .el-menu-item:hover {
+  //     background-color: transparent;
+  // }
+  // .work {
+  //     &.el-menu--horizontal {
+  //         &>.el-menu-item {
+  //             &.is-active {
+  //                 color: #909399;
+  //                 &::after {
+  //                     display: none;
+  //                 }
+  //             }
+  //         }
+  //     }
+  // }
+}
 </style>

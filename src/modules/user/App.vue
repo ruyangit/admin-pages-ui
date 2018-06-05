@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    test2 <a href="/user#/profile">Profile</a>
+    <transition name="fade" mode="out-in">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
