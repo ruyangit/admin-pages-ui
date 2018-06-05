@@ -8,7 +8,8 @@ import { sync } from 'vuex-router-sync'
 
 import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
-import '@/assets/common.less';
+import '@/styles/default.less';
+import '@/styles/components/user/index.less';
 
 import MainHeader from '@/components/header/index.vue';
 import SvgIcon from '@/components/svg-icon/index.vue';
