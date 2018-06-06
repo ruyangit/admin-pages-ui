@@ -2,7 +2,6 @@ import axios from 'axios'
 import { Message, MessageBox} from 'element-ui'
 import { getCookies, removeCookies } from '@/utils/cookies'
 import _CONST from '@/utils/globalConfig'
-import store from '@/store'
 import qs from 'qs';
 
 // create an axios instance
@@ -20,7 +19,7 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(config => {
     // Do something before request is sent
-    if (store.getters["user/getToken"]) {
+    if (getCookies(_CONST.TOKEN)) {
         config.headers['Authorization'] = 'Bearer ' + getCookies(_CONST.TOKEN) // 让每个请求携带token-- ['Authorization']为自定义key 请根据实际情况自行修改
     }
 
@@ -64,7 +63,6 @@ service.interceptors.response.use(
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    store.commit('user/setToken', null)
                     removeCookies(_CONST.TOKEN);
                     location.reload();// 为了重新实例化vue-router对象 避免bug
                 })

@@ -6,15 +6,16 @@
                 <svg-icon type="skye-logo" className="skye-logo" />
             </router-link>
         </h1>
-        <ul class="nav" v-show="!isLoginPage">
+        <ul class="nav">
             <!-- <li class="nav-item nav-algolia-search" v-show="isComponentPage">
                                                                                     <algolia-search></algolia-search>
                                                                                 </li> -->
+            <!-- <li class="nav-item"> -->
+                <!-- <router-link active-class="active" :to="`/apps`">我的应用</router-link> -->
+            <!-- </li> -->
             <li class="nav-item">
-                <router-link active-class="active" :to="`/apps`">我的应用</router-link>
-            </li>
-            <li class="nav-item">
-                <router-link active-class="active" :to="`/notification`">通知</router-link>
+                <a href="/notification">通知</a>
+                <!-- <router-link active-class="active" :to="`/notification`">通知</router-link> -->
             </li>
             <!-- gap -->
             <li class="nav-item">
@@ -26,9 +27,9 @@
                     <span>我的工作台 <i class="el-icon-arrow-down el-icon--right"></i> </span>
                     <el-dropdown-menu slot="dropdown" class="nav-dropdown-list" @input="handleUserDropdownToggle">
                         <!-- <el-dropdown-item v-for="item in 5" :key="item" @click.native="switchVersion(item)"> -->
-                        <el-dropdown-item command="/">基本信息</el-dropdown-item>
-                        <el-dropdown-item disabled>密钥管理</el-dropdown-item>
-                        <el-dropdown-item disabled>安全设置</el-dropdown-item>
+                        <el-dropdown-item command="/user#/profile">基本信息</el-dropdown-item>
+                        <el-dropdown-item command="/user#/key">密钥管理</el-dropdown-item>
+                        <el-dropdown-item command="/user#/security">安全设置</el-dropdown-item>
                         <el-dropdown-item divided command="/apps/create"><i class="el-icon-plus"></i> 添加新应用</el-dropdown-item>
                         <el-dropdown-item divided command="/login">退出工作台</el-dropdown-item>
                     </el-dropdown-menu>
@@ -95,16 +96,17 @@ export default {
     },
     handleCommand(command) {
       this.$message("click on item " + command);
-      this.$router.push({
-        path: command
-      });
+      window.location.href = command
+      // this.$router.push({
+      //   path: command
+      // });
     }
   },
   computed: {
-    isLoginPage() {
-      console.log(this.$route.name);
-      return /^Login/.test(this.$route.name);
-    }
+    // isLoginPage() {
+    //   console.log(this.$route.name);
+    //   return /^Login/.test(this.$route.name);
+    // }
   }
 };
 </script>

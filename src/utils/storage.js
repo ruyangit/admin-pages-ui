@@ -14,7 +14,7 @@ export const setStore = (key, value) => {
  */
 export const getStore = key => {
     if (!key) return
-    return window.localStorage.getItem(key)
+    return JSON.parse(window.localStorage.getItem(key))
 }
 
 /**

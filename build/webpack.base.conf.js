@@ -44,6 +44,9 @@ const baseWebpackConfig = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      '~login': resolve('src/modules/login'),
+      '~user': resolve('src/modules/user'),
+      '~notification': resolve('src/modules/notification'),
     }
   },
   module: {
@@ -63,7 +66,7 @@ const baseWebpackConfig = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          name: utils.assetsPath('images/[name].[hash:7].[ext]')
         }
       },
       {

@@ -13,10 +13,11 @@ import _CONST from '@/utils/globalConfig'
 // const Security = () => import(/* webpackChunkName: "user-group" */ '../views/security/index.vue')
 
 //为了简单发包
-import Layout from '../views/layout/index.vue'
-import Profile from '../views/profile/index.vue'
-import Key from '../views/key/index.vue'
-import Security from '../views/security/index.vue'
+import Test from '../views/test.vue'
+// import Layout from '../views/layout/index.vue'
+// import Profile from '../views/profile/index.vue'
+// import Key from '../views/key/index.vue'
+// import Security from '../views/security/index.vue'
 
 Vue.use(VueRouter)
 
@@ -24,22 +25,23 @@ const router = new VueRouter({
   // mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/', redirect: { path: 'profile' } },
-    {
-      path: '/', component: Layout, children: [
-        { path: 'profile', name: 'Profile', component: Profile, meta: { title: '个人信息', auth: true } },
-        { path: 'key', name: 'Key', component: Key, meta: { title: '密钥管理', auth: true } },
-        { path: 'security', name: 'Security', component: Security, meta: { title: '安全设置', auth: true } },
-      ], meta: { auth: true }
-    },
-    { path: '*', redirect: { path: 'profile' } },
+    { path: '/', redirect: { path: 'test' } },
+    { path: '/test', name: 'Test', component: Test, meta: { title: 'Test', auth: true } },
+    // {
+    //   path: '', component: Layout, children: [
+    //     { path: '/profile', name: 'Profile', component: Profile, meta: { title: '个人信息', auth: true } },
+    //     { path: '/key', name: 'Key', component: Key, meta: { title: '密钥管理', auth: true } },
+    //     { path: '/security', name: 'Security', component: Security, meta: { title: '安全设置', auth: true } },
+    //   ], meta: { auth: true }
+    // },
+    { path: '*', redirect: { path: 'test' } },
   ]
 })
 
 router.beforeEach(({ meta, name, path }, from, next) => {
   let { title, auth = false } = meta
   if (title)
-    document.title = '用户中心' + ' - ' + title || 'SKYES'
+    document.title = '通知' + ' - ' + title || 'SKYES'
   if (auth) {
     if (!getCookies(_CONST.TOKEN) && name !== 'Login') {
       window.location.href = '/login#/?redirect=' + location.href

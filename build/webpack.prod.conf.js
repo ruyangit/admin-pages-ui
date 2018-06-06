@@ -88,7 +88,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
       filename: 'vendors.[chunkhash:7].js',
-      minChunks (module) {
+      minChunks(module) {
         // any required modules inside node_modules are extracted to vendor
         return (
           module.resource &&
@@ -149,23 +149,30 @@ if (config.build.bundleAnalyzerReport) {
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 
-Object.keys(entris).forEach(function(entry) {
+Object.keys(entris).forEach(function (entry) {
   // const chunks = ['manifest', 'vendors', entry]
   const chunks = ['vendors', entry]
   webpackConfig.plugins.push(
-      new HtmlWebpackPlugin({
-          isProd: true,
-          chunks,
-          filename: entry + '/index.html',
-          template: 'src/template/index.html',
-          inject: true,
-          chunksSortMode(chunk1, chunk2) {
-              const orders = chunks
-              const order1 = orders.indexOf(chunk1.names[0])
-              const order2 = orders.indexOf(chunk2.names[0])
-              return order1 - order2
-          }
-      })
+    new HtmlWebpackPlugin({
+      isProd: true,
+      chunks,
+      filename: entry + '/index.html',
+      template: 'src/template/index.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true,
+        minifyCSS: true,
+        minifyJS: true
+      },
+      chunksSortMode(chunk1, chunk2) {
+        const orders = chunks
+        const order1 = orders.indexOf(chunk1.names[0])
+        const order2 = orders.indexOf(chunk2.names[0])
+        return order1 - order2
+      }
+    })
   )
 })
 

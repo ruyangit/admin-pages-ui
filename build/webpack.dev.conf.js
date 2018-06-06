@@ -29,10 +29,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     historyApiFallback: {
       rewrites: [
         // { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
-        { from: /\/$/, to: '/test1/index.html' },
-        { from: /\/test1$/, to: '/test1/index.html' },
+        { from: /\/$/, to: '/home/index.html' },
+        { from: /\/home$/, to: '/home/index.html' },
+        { from: /\/login$/, to: '/login/index.html' },
         { from: /\/test2$/, to: '/test2/index.html' },
-        { from: /\/test3$/, to: '/test3/index.html' },
+        { from: /\/notification$/, to: '/notification/index.html' },
         { from: /\/user$/, to: '/user/index.html' }
       ],
     },

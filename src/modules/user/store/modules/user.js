@@ -19,7 +19,6 @@ const actions = {
             login(loginName, user.password).then(response => {
                 const { data: { result: { access_token }, code } } = response
                 //存储登录信息
-                commit('setToken', access_token)
                 setCookies(_CONST.TOKEN, access_token)
 
                 //登录成功获取用户信息
@@ -33,7 +32,6 @@ const actions = {
     async ['logout']({ commit }) {
         const { data: { result, code } } = await logout();
         if (result && code === 200) {
-            commit('setToken', null)
             removeStore(_CONST.USER_INFO)
             removeCookies(_CONST.TOKEN)
         }
@@ -48,10 +46,6 @@ const actions = {
 }
 
 const mutations = {
-
-    ['setToken'](state, payload) {
-        state.token = payload
-    },
 
     ['setUserInfo'](state, payload) {
         state.userInfo = payload

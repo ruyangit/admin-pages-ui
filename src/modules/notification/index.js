@@ -2,13 +2,14 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import store from './store'
+// import store from './store'
 import router from './router'
 import { sync } from 'vuex-router-sync'
 
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-// import '@/assets/common.less';
+// import 'element-ui/lib/theme-chalk/index.css';
+import '@/styles/default.less';
+// import '@/styles/components/user/index.less';
 
 import MainHeader from '@/components/header/index.vue';
 import SvgIcon from '@/components/svg-icon/index.vue';
@@ -20,12 +21,12 @@ Vue.use(ElementUI);
 Vue.component(MainHeader.name, MainHeader);
 Vue.component(SvgIcon.name, SvgIcon);
 
-sync(store, router)
+// sync(store, router)
 
 /* eslint-disable no-new */
 const app = new Vue({
   router,
-  store,
+  // store,
   render: h => h(App)
 })
 
