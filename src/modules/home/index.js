@@ -7,7 +7,12 @@ import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
 import '@/styles/default.less';
 
+import SvgIcon from '@/components/svg-icon/index.vue';
+
 Vue.config.productionTip = false
+
+Vue.use(ElementUI);
+Vue.component(SvgIcon.name, SvgIcon);
 
 /* eslint-disable no-new */
 const app = new Vue({
