@@ -40,12 +40,12 @@ router.beforeEach(({ meta, name, path }, from, next) => {
   let { title, auth = false } = meta
   if (title)
     document.title = '用户中心' + ' - ' + title || 'SKYES'
-  if (auth) {
-    if (!getCookies(_CONST.TOKEN) && name !== 'Login') {
-      window.location.href = '/login#/?redirect=' + location.href
-      return false
-    }
-  }
+  // if (auth) {
+  //   if (!getCookies(_CONST.TOKEN) && name !== 'Login') {
+  //     window.location.href = '/login#/?redirect=' + location.href
+  //     return false
+  //   }
+  // }
   next()
 })
 

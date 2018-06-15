@@ -64,6 +64,7 @@ const baseWebpackConfig = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
+		exclude: [resolve('src/icons/svg')], // 默认不处理该文件夹的命中的文件
         options: {
           limit: 10000,
           name: utils.assetsPath('images/[name].[hash:7].[ext]')

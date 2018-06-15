@@ -1,17 +1,18 @@
 <template>
     <el-container class="container--login" id="app">
-        <el-header>
+        <!-- <el-header>
             <div class="container">
                 <h1>
                     <router-link to="/">
-                        <svg-icon type="skye-logo" className="skye-logo" />
+                        <svg-icon type="dx-logo" className="skye-logo" />
                     </router-link>
                 </h1>
             </div>
-        </el-header>
+        </el-header> -->
         <div class="main-content">
             <div class="container">
                 <el-form ref="form" :model="form" :rules="rules">
+                    <div class="logo"><svg-icon type="dx-logo" className="svg"/></div>
                     <el-form-item prop="loginName">
                         <el-input v-model="form.loginName" placeholder="邮箱账户"></el-input>
                     </el-form-item>
