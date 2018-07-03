@@ -94,61 +94,196 @@
         </el-menu>
       </div>
       <div class="main-body">
-        <el-breadcrumb separator="/" style="padding:15px;">
-          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <!-- <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
-          <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-          <el-breadcrumb-item>活动详情</el-breadcrumb-item> -->
-        </el-breadcrumb>
+        <!-- <el-breadcrumb separator="/" style="padding:20px;">
+              <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item> -->
+        <!-- <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
+              <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+              <el-breadcrumb-item>活动详情</el-breadcrumb-item> -->
+        <!-- </el-breadcrumb> -->
         <!-- <el-table :data="tableData" stripe style="width: 100%">
-            <el-table-column prop="date" label="DATE" width="180">
-            </el-table-column>
-            <el-table-column prop="name" label="NAME" width="180">
-            </el-table-column>
-            <el-table-column prop="address" label="ADDRESS">
-            </el-table-column>
-            <el-table-column prop="id" label="ID" width="80">
-            </el-table-column>
-          </el-table> -->
-        <div class="el-row" style="padding-left: 6px; padding-right: 6px;">
-          <div class="el-col el-col-6 el-col-xs-12" style="padding-left: 6px; padding-right: 6px;">
-            <div class="demo-color-box bg-success">Success
-              <div class="value">#67C23A</div>
-            </div>
-          </div>
-          <div class="el-col el-col-6 el-col-xs-12" style="padding-left: 6px; padding-right: 6px;">
-            <div class="demo-color-box bg-warning">Warning
-              <div class="value">#E6A23C</div>
-            </div>
-          </div>
-          <div class="el-col el-col-6 el-col-xs-12" style="padding-left: 6px; padding-right: 6px;">
-            <div class="demo-color-box bg-danger">Danger
-              <div class="value">#F56C6C</div>
-            </div>
-          </div>
-          <div class="el-col el-col-6 el-col-xs-12" style="padding-left: 6px; padding-right: 6px;">
-            <div class="demo-color-box bg-info">Info
-              <div class="value">#909399</div>
-            </div>
-          </div>
+                <el-table-column prop="date" label="DATE" width="180">
+                </el-table-column>
+                <el-table-column prop="name" label="NAME" width="180">
+                </el-table-column>
+                <el-table-column prop="address" label="ADDRESS">
+                </el-table-column>
+                <el-table-column prop="id" label="ID" width="80">
+                </el-table-column>
+              </el-table> -->
+        <div class="container-block">
+          <h4>实时概况</h4>
+          <el-row>
+            <el-col :span="24" :lg="12">
+              <div class="demo-data-item">
+                <img src="https://img.alicdn.com/tfs/TB1iFKccamWBuNjy1XaXXXCbXXa-140-140.png" alt="" class="data-item-img" />
+                <div class="data-item-unit">
+                  <div class="unit-title">门店销售额(元)</div>
+                  <div class="unit-amount">1982.00</div>
+                  <div class="unit-footer">昨日：1680.00</div>
+                </div>
+                <div class="data-item-unit">
+                  <div class="unit-title">门店支付订单数</div>
+                  <div class="unit-amount">80</div>
+                  <div class="unit-footer">昨日：60</div>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="24" :lg="12">
+              <div class="demo-data-item">
+                <img src="https://img.alicdn.com/tfs/TB1iFKccamWBuNjy1XaXXXCbXXa-140-140.png" alt="" class="data-item-img" />
+                <div class="data-item-unit">
+                  <div class="unit-title">网店销售额(元)</div>
+                  <div class="unit-amount">2381.00</div>
+                  <div class="unit-footer">昨日：2123.00</div>
+                </div>
+                <div class="data-item-unit">
+                  <div class="unit-title">网店支付订单数</div>
+                  <div class="unit-amount">120</div>
+                  <div class="unit-footer">昨日：128</div>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="24" :lg="12">
+              <div class="demo-data-item">
+                <img src="https://img.alicdn.com/tfs/TB1Py4_ceuSBuNjy1XcXXcYjFXa-142-140.png" alt="" class="data-item-img" />
+                <div class="data-item-unit">
+                  <div class="unit-title">新增客户数</div>
+                  <div class="unit-amount">239</div>
+                  <div class="unit-footer">昨日：231</div>
+                </div>
+                <div class="data-item-unit">
+                  <div class="unit-title">支付客户数</div>
+                  <div class="unit-amount">85</div>
+                  <div class="unit-footer">昨日：60</div>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="24" :lg="12">
+              <div class="demo-data-item">
+                <img src="https://img.alicdn.com/tfs/TB1Ni4_ceuSBuNjy1XcXXcYjFXa-142-140.png" alt="" class="data-item-img" />
+                <div class="data-item-unit">
+                  <div class="unit-title">新增会员数</div>
+                  <div class="unit-amount">45</div>
+                  <div class="unit-footer">昨日：78</div>
+                </div>
+                <div class="data-item-unit">
+                  <div class="unit-title">新增储值金额(元)</div>
+                  <div class="unit-amount">568.00</div>
+                  <div class="unit-footer">昨日：693.00</div>
+                </div>
+              </div>
+            </el-col>
+          </el-row>
         </div>
-
-        <div class="el-row" style="padding-left: 6px; padding-right: 6px;">
-          <div class="el-col el-col-18 el-col-xs-24" style="padding-left: 6px; padding-right: 6px;">
-            <div class="demo-color-box bg-success">Success
-              <div class="value">#67C23A</div>
-            </div>
-          </div>
-          <div class="el-col el-col-6 el-col-xs-24" style="padding-left: 6px; padding-right: 6px;">
-            <div class="demo-color-box bg-info">Info
-              <div class="value">#909399</div>
-            </div>
-          </div>
+        <div class="container-block">
+          <h4>重要提醒</h4>
+          <el-row>
+            <el-col :span="24" :lg="12">
+              <div class="demo-notice-item">
+                <div class="notice-item-title">订单相关</div>
+                <div class="notice-item-body">
+                  <div class="body-item">
+                    待发货订单：<a href="#">100</a>
+                  </div>
+                  <div class="body-item">
+                    待处理退款：<a href="#">0</a>
+                  </div>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="24" :lg="12">
+              <div class="demo-notice-item">
+                <div class="notice-item-title">物流信息</div>
+                <div class="notice-item-body">
+                  <div class="body-item">
+                    已完成：<a href="#">100</a>
+                  </div>
+                  <div class="body-item">
+                    派送中：<a href="#">0</a>
+                  </div>
+                  <div class="body-item">
+                    退货中：<a href="#">0</a>
+                  </div>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="24" :lg="12">
+              <div class="demo-notice-item">
+                <div class="notice-item-title">商品相关</div>
+                <div class="notice-item-body">
+                  <div class="body-item">
+                    门店在售：<a href="#">100</a>
+                  </div>
+                  <div class="body-item">
+                    门店售罄：<a href="#">0</a>
+                  </div>
+                  <div class="body-item">
+                    库存预警：<a href="#">0</a>
+                  </div>
+                  <div class="body-item">
+                    网店在售：<a href="#">0</a>
+                  </div>
+                  <div class="body-item">
+                    网店售罄：<a href="#">0</a>
+                  </div>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="24" :lg="12">
+              <div class="demo-notice-item">
+                <div class="notice-item-title">通知消息</div>
+                <div class="notice-item-body">
+                  <div class="body-item">
+                    未读客户消息：<a href="#">100</a>
+                  </div>
+                  <div class="body-item">
+                    未读通知：<a href="#">0</a>
+                  </div>
+                  <div class="body-item">
+                    系统通知：<a href="#">0</a>
+                  </div>
+                </div>
+              </div>
+            </el-col>
+          </el-row>
         </div>
+        <!-- <div class="el-row" style="padding-left: 6px; padding-right: 6px;">
+              <div class="el-col el-col-6 el-col-xs-12" style="padding-left: 6px; padding-right: 6px;">
+                <div class="demo-color-box bg-success">Success
+                  <div class="value">#67C23A</div>
+                </div>
+              </div>
+              <div class="el-col el-col-6 el-col-xs-12" style="padding-left: 6px; padding-right: 6px;">
+                <div class="demo-color-box bg-warning">Warning
+                  <div class="value">#E6A23C</div>
+                </div>
+              </div>
+              <div class="el-col el-col-6 el-col-xs-12" style="padding-left: 6px; padding-right: 6px;">
+                <div class="demo-color-box bg-danger">Danger
+                  <div class="value">#F56C6C</div>
+                </div>
+              </div>
+              <div class="el-col el-col-6 el-col-xs-12" style="padding-left: 6px; padding-right: 6px;">
+                <div class="demo-color-box bg-info">Info
+                  <div class="value">#909399</div>
+                </div>
+              </div>
+            </div>
+            <div class="el-row" style="padding-left: 6px; padding-right: 6px;">
+              <div class="el-col el-col-18 el-col-xs-24" style="padding-left: 6px; padding-right: 6px;">
+                <div class="demo-color-box bg-success">Success
+                  <div class="value">#67C23A</div>
+                </div>
+              </div>
+              <div class="el-col el-col-6 el-col-xs-24" style="padding-left: 6px; padding-right: 6px;">
+                <div class="demo-color-box bg-info">Info
+                  <div class="value">#909399</div>
+                </div>
+              </div>
+            </div> -->
       </div>
     </div>
   </div>
-
 </div>
 </template>
 <script>
@@ -169,8 +304,7 @@ export default {
       this.$notify({
         title: "提示",
         dangerouslyUseHTMLString: true,
-        message:
-          '喜欢就 <a style="color:blue;" href="https://github.com/ruyangit/my-vuejs-skye-cli.git">Star</a> 一个吧, [ ^_^ ]',
+        message: '喜欢就 <a style="color:blue;" href="https://github.com/ruyangit/my-vuejs-skye-cli.git">Star</a> 一个吧, [ ^_^ ]',
         duration: 0,
         type: "success",
         position: "bottom-right",
@@ -193,6 +327,81 @@ export default {
 </script>
 
 <style lang="less">
+.container-block {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+  h4 {
+    height: 16px;
+    line-height: 16px;
+    font-size: 16px;
+    color: rgb(51, 51, 51);
+    font-weight: bold;
+    margin: 0px 0px 20px;
+    padding: 0px;
+  }
+}
+
+.demo {
+  &-data-item {
+    display: flex;
+    flex-basis: 50%;
+    padding: 20px;
+    align-items: center;
+    .data-item-img {
+      width: 58px;
+      height: 58px;
+      margin-right: 30px;
+    }
+    .data-item-unit {
+      height: 72px;
+      display: flex;
+      flex-basis: 50%;
+      flex-direction: column;
+      justify-content: space-between;
+      .unit-title {
+        color: rgb(102, 102, 102);
+        font-size: 12px;
+      }
+      .unit-amount {
+        color: rgb(51, 51, 51);
+        font-size: 24px;
+      }
+      .unit-footer {
+        color: rgb(153, 153, 153);
+        font-size: 12px;
+      }
+    }
+  }
+  &-notice-item {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    padding: 20px;
+    .notice-item-title {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: rgb(51, 51, 51);
+    }
+    .notice-item-body {
+      display: flex;
+      flex-wrap: wrap;
+      line-height: 1.28;
+      .body-item {
+        display: flex;
+        flex-basis: 33%;
+        color: rgb(153, 153, 153);
+        font-size: 13px;
+        margin-bottom: 10px;
+        a:link,a:visited{
+          color: #5485f7;
+        }
+      }
+    }
+  }
+}
+
 .topbar-menu-user {
   width: 270px; // height: 280px;
   // background-color: #e5e5e5;
@@ -268,7 +477,7 @@ export default {
           overflow-x: auto;
         }
       }
-      & > .sidebar-body {
+      &>.sidebar-body {
         width: auto;
         height: auto;
         position: absolute; // top: 25px;
@@ -283,7 +492,7 @@ export default {
         list-style: none;
         .sidebar-nav-item {
           display: list-item;
-          & > a {
+          &>a {
             display: block;
             &.actived {
               color: #2f3033;
@@ -302,7 +511,7 @@ export default {
         bottom: 0px;
         width: 100%;
         height: 50px;
-        & > a {
+        &>a {
           display: block;
         }
       }
@@ -355,8 +564,10 @@ export default {
         height: 100%;
         padding-left: 1px;
         overflow-y: auto;
+        background-color: #fafafa;
+        padding: 10px;
       }
-      & > .main-body {
+      &>.main-body {
         width: auto;
         height: auto;
         position: absolute; // top: 25px;
@@ -367,7 +578,7 @@ export default {
       }
     }
   }
-  & > .wrapper {
+  &>.wrapper {
     width: auto;
     height: auto;
     position: absolute;
@@ -406,26 +617,31 @@ export default {
     }
   }
 }
-.demo-color-box{
+
+.demo-color-box {
   border-radius: 4px;
-    padding: 20px;
-    margin: 5px 0;
-    height: 74px;
-    box-sizing: border-box;
-    color: #fff;
-    font-size: 14px;
+  padding: 20px;
+  margin: 5px 0;
+  height: 74px;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 14px;
 }
-.bg-success{
-      background-color: #67c23a;
+
+.bg-success {
+  background-color: #67c23a;
 }
+
 .bg-warning {
-    background-color: #e6a23c;
+  background-color: #e6a23c;
 }
+
 .bg-danger {
-    background-color: #f56c6c;
+  background-color: #f56c6c;
 }
+
 .bg-info {
-    background-color: #909399;
+  background-color: #909399;
 }
 </style>
 
