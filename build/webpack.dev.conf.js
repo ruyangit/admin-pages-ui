@@ -34,7 +34,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         { from: /\/login$/, to: '/login/index.html' },
         { from: /\/test2$/, to: '/test2/index.html' },
         { from: /\/notification$/, to: '/notification/index.html' },
-        { from: /\/user$/, to: '/user/index.html' }
+        { from: /\/user$/, to: '/user/index.html' },
+        { from: /\/data$/, to: '/data/index.html' }
       ],
     },
     hot: true,
