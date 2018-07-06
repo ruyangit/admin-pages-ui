@@ -1,15 +1,96 @@
 <template>
-<ru-layout id="app" sidebarActive="sb-2">
+<ru-layout id="app" sidebarActive="sb-2" :sidebarMini="true">
   <ru-navbar-inner title="数据中心" :treeData="data">
     <div style="padding:10px">
       <div class="container-block">
-      <h4>列表</h4>
-      <el-button-group>
-      <el-button type="primary" icon="el-icon-edit"></el-button>
-      <el-button type="primary" icon="el-icon-share"></el-button>
-      <el-button type="primary" icon="el-icon-delete"></el-button>
-    </el-button-group>
-    </div>
+        <h4>列表</h4>
+        <div class="tools-head">
+            <el-button size="mini" type="primary" icon="el-icon-plus">添加联系人</el-button>
+            <el-button size="mini" plain disabled>删除联系人</el-button>
+            <div class="pull-right">
+              <el-button size="mini" type="primary" icon="el-icon-refresh" @click="loading=!loading"></el-button>
+            <el-input placeholder="请输入联系人进行搜索" v-model="input1" size="mini" style="width:350px;">
+              <el-select v-model="selsect1" slot="prepend">
+                <el-option label="会员账户" value="1"></el-option>
+                <el-option label="订单编号" value="2"></el-option>
+                <el-option label="电话号码" value="3"></el-option>
+              </el-select>
+              <el-button slot="append" icon="el-icon-search"></el-button>
+            </el-input>
+            </div>
+        </div>
+        <div class="data-body">
+          <el-table
+          :border="true"
+          v-loading="loading"
+            header-cell-class-name="table-header-column"
+            :data="tableData"
+            style="width: 100%">
+            <el-table-column
+            type="selection"
+            width="35">
+          </el-table-column>
+            <el-table-column
+              prop="date"
+              label="日期"
+              width="120"
+              sortable>
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="姓名"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="address"
+              label="地址">
+            </el-table-column>
+            <el-table-column
+              prop="id"
+              label="状态"
+              width="100">
+              <template slot-scope="scope" >
+              <!-- <el-button
+                @click.native.prevent="deleteRow(scope.$index, tableData)"
+                type="text"
+                size="small">
+              </el-button> -->
+              <div style="color:#5FB333;">
+              <i class="el-icon-circle-check"></i>
+               <span> 已审核</span></div>
+            </template>
+            </el-table-column>
+            <el-table-column
+              prop="id"
+              label="操作"
+              width="120">
+              <template slot-scope="scope" >
+              <el-button
+                @click.native.prevent="deleteRow(scope.$index, tableData)"
+                type="text"
+                size="small">
+                <i class="el-icon-edit-outline"></i> 编辑
+              </el-button>
+              <el-button
+                @click.native.prevent="deleteRow(scope.$index, tableData)"
+                type="text"
+                size="small">
+                <i class="el-icon-news"></i> 审核
+              </el-button>
+            </template>
+            </el-table-column>
+          </el-table>
+        </div>
+        <div class="data-footer">
+         <div class="data-footer-pagination">
+           <el-pagination
+  background
+  layout="prev, pager, next"
+  :total="1000">
+</el-pagination>
+         </div>
+          </div>
+      </div>
     </div>
   </ru-navbar-inner>
 </ru-layout>
@@ -21,6 +102,10 @@ export default {
   name: "App",
   data() {
     return {
+      loading:false,
+      input1: '',
+      selsect1: '1',
+      tableData: [],
       data: [{
         label: '一级 1'
       }, {
@@ -30,12 +115,79 @@ export default {
       }]
     }
   },
-  components:{
+  components: {
     RuNavbarInner
+  },
+  mounted() {
+    for (var i = 0; i < 15; i++) {
+      this.tableData.push({
+        id: i + 1,
+        date: "2016-05-02",
+        name: "王小虎",
+        address: "上海市普陀区金沙江路 1518 弄"
+      });
+    }
+   // this.handleTip();
+  },
+  methods:{
+    deleteRow(index, rows) {
+       // rows.splice(index, 1);
+       console.log(index);
+       console.log(rows);
+    }
   }
 };
 </script>
 
 <style lang="less">
+.tools-head{
+  position: relative;
+  margin-bottom: 10px;
+  .el-select {
+    width: 100px;
+  }
+  
+  .pull-right{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+.data-body{
+  margin-bottom: 10px;
+  .table{
+    &-header{
+      &-column{
+        background-color: #fafafa;
+      }
+    }
+  }
 
+  .el-table{
+    & th,& td{
+      padding: 8px 0;
+    }
+    & th{
+      border-bottom: 0px;
+    }
+    &--border,&--group{
+      border: 0px;
+      border-bottom: 1px solid #ebeef5;
+    }
+    &--border{
+      & th,& td{
+        border-right: 1px solid #fff;
+      }
+    }
+    &::before,&::after{
+      background-color: #fff;
+    }
+  }
+}
+.data-footer{
+  text-align: right;
+  &-pagination{
+
+  }
+}
 </style>

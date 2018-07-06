@@ -31,7 +31,7 @@
       <el-scrollbar class="sidebar-body">
         <ul class="sidebar-nav-list">
           <li class="sidebar-nav-item">
-            <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-4'}"  href="#">
+            <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-4'}"  href="/home">
                 <i class="el-icon-phone-outline"></i>
                 <span class="sidebar-item-label">通讯录</span>
               </a>
@@ -48,6 +48,30 @@
                 <span class="sidebar-item-label">智能收藏</span>
               </a>
           </li>
+          <li class="sidebar-nav-item">
+            <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-7'}" href="/data">
+                <i class="el-icon-goods"></i>
+                <span class="sidebar-item-label">列表</span>
+              </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-8'}" href="/from">
+                <i class="el-icon-printer"></i>
+                <span class="sidebar-item-label">表单</span>
+              </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-9'}" href="/login">
+                <i class="el-icon-upload"></i>
+                <span class="sidebar-item-label">登录</span>
+              </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-10'}" href="/register">
+                <i class="el-icon-sold-out"></i>
+                <span class="sidebar-item-label">注册</span>
+              </a>
+          </li>
         </ul>
       </el-scrollbar>
       <div class="sidebar-footer" @click="sidebarMini=!sidebarMini">
@@ -59,15 +83,14 @@
     </div>
     <div class="container">
       <div class="topbar">
-        <div class="topbar-main">
-        <el-menu  mode="horizontal" :menu-trigger="`click`" >
-          <el-menu-item index="1">
+        <el-menu  mode="horizontal">
+          <!-- <el-menu-item index="1">
             <a href="/home" style="display:block;">
             <i class="el-icon-menu"></i>
             </a>
-            <!-- <span slot="title">我的控制台</span> -->
-          </el-menu-item>
+          </el-menu-item> -->
           <el-submenu index="2" >
+            
             <span slot="title">金融产品</span>
             <div style="width:450px">
               <div style="padding: 18px 20px;border-bottom: 1px solid #ebeef5;">
@@ -78,14 +101,29 @@
   
           </el-submenu>
         </el-menu>
-        </div>
         <el-menu :default-active="activeIndex2" class="topbar-menu" mode="horizontal" @select="handleSelect" style="position:absolute;top:0px;right:0px;">
           <!-- <div> -->
-          <!-- <el-menu-item index="6">消息中心</el-menu-item> -->
-
-          <el-menu-item index="7"><i class="el-icon-bell"></i></el-menu-item>
+          <el-menu-item index="6" class="topbar-search">
+            <el-input placeholder="请输入内容" size="mini">
+              <i slot="append" class="el-icon-search"></i>
+            </el-input>
+          </el-menu-item>
+          <el-submenu index="5" class="arrow-down-none">
+            <i class="el-icon-bell" slot="title"></i>
+            <div style="width:260px;height:320px;">
+              message
+            </div>
+  
+          </el-submenu>
+          <!-- <el-submenu index="6" class="arrow-down-none">
+            
+            <i class="el-icon-service" slot="title"></i>
+            <el-menu-item index="6-1">提交工单</el-menu-item>
+            <el-menu-item index="6-2">联系客服</el-menu-item>
+            <el-menu-item index="6-3">帮助中心</el-menu-item>
+  
+          </el-submenu> -->
           <el-menu-item index="8"><i class="el-icon-service"></i></el-menu-item>
-          <!-- <el-menu-item index="8">帮助中心</el-menu-item> -->
           <!-- </div> -->
           <el-submenu index="9" >
             <span slot="title">账户中心</span>
@@ -166,6 +204,10 @@
 export default {
   name: "ru-layout",
   props: {
+    sidebarMini: {
+      type: Boolean,
+      default: false
+    },
     topbarActive: {
       type: String,
       default: ""
@@ -185,7 +227,6 @@ export default {
   },
   data() {
     return {
-      sidebarMini: false,
       activeIndex: "1",
       activeIndex2: "1"
     };
@@ -385,17 +426,6 @@ export default {
             }
           }
         }
-        .topbar-main {
-          .el-menu--horizontal {
-            & > .el-submenu {
-              .el-icon-arrow-down {
-                &::before {
-                  content: "";
-                }
-              }
-            }
-          }
-        }
       }
       .main-body {
         width: 100%;
@@ -455,7 +485,40 @@ export default {
     }
   }
 }
-
+.arrow-down-none{
+            &.el-submenu {
+              .el-icon-arrow-down {
+                &::before {
+                  content: "";
+                }
+              }
+              .el-submenu__icon-arrow{
+                margin-left: 0px;
+              }
+            }
+}
+.topbar-search{
+  .el-input__inner,.el-input-group__append{
+ border-top-right-radius: 4px;
+     border-bottom-right-radius: 4px; 
+  }
+  .el-input__inner{
+    padding: 0 30px 0 5px;
+  }
+  .el-input-group__append{
+    background-color: transparent;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    //padding: 0 20px;
+    // width: 0px;
+    border:0px;
+    padding: 0 22px 0 5px;
+  }
+  .el-icon-search{
+    font-size: 14px;
+  }
+}
 .normal-footer {
   .content {
     align-items: center;

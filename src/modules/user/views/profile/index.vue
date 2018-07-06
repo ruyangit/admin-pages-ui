@@ -1,72 +1,83 @@
 <template>
-  <el-row :gutter="20" class="profile">
-    <el-col :span="6">
-      <el-form label-position="top" class="edit-profile-avatar">
-        <el-form-item label="Profile picture">
-          <img class="avatar" width="200" height="200" src="/static/images/user/face.jpg">
-        </el-form-item>
-        <el-form-item>
-          <el-button>Upload new picture</el-button>
-        </el-form-item>
-      </el-form>
-    </el-col>
-    <el-col :span="12">
-      <div class="profile-info">
-        <div>基本信息</div>
-        <div style="padding:25px 0 35px;">
-          <div><span><i class="el-icon-menu"></i> {{userInfo.loginName}}</span></div>
-          <div>
-            <span><i class="el-icon-tickets"></i> 个人用户</span>
-            <el-tooltip class="item" effect="dark" content="企业用户使用更多权益" placement="top">
-              <el-button type="text">升级</el-button>
-            </el-tooltip>
-            <span style="margin-left:15px;"><i class="el-icon-mobile-phone"></i> 已经绑定手机：{{userInfo.mobile}}</span>
-            <el-tooltip class="item" effect="dark" content="该手机号已实名绑定" placement="top">
-              <el-button type="text">绑定信息</el-button>
-            </el-tooltip>
-          </div>
-          <div>
-            <span><i class="el-icon-date"></i> 注册时间：</span>
-            <span>{{userInfo.updateDate}}</span>
-          </div>
-        </div>
-      </div>
-      <el-form ref="userInfo" :model="userInfo" label-position="top">
-        <el-form-item label="姓名">
-          <el-input v-model="userInfo.name"></el-input>
-        </el-form-item>
-        <el-form-item label="邮箱">
-          <el-input v-model="userInfo.email"></el-input>
-        </el-form-item>
-        <el-form-item label="个人简介">
-          <el-input type="textarea" v-model="userInfo.desc"></el-input>
-        </el-form-item>
-        <el-form-item label="我的站点">
-          <el-input v-model="userInfo.site"></el-input>
-        </el-form-item>
-        <el-form-item label="公司">
-          <el-input v-model="userInfo.company"></el-input>
-        </el-form-item>
-        <el-form-item label="地址">
-          <el-input v-model="userInfo.location"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="onSubmit">更新信息</el-button>
-        </el-form-item>
-        <!-- <el-form-item style="margin-bottom: 0px;">
-                <span style="color: #f56c6c;">你当前还能够免费创建 2 个应用</span>
-              </el-form-item> -->
-      </el-form>
-    </el-col>
-  </el-row>
+<div class="user demo-user">
+  <div class="user-left">
+    <div class="container-block">
+      <h4>基本信息</h4>
+      <el-row class="info-items">
+        <el-col :span="24" :lg="12" class="info-item">
+          <span class="info-item-label">任务标题：</span>
+          <span class="info-item-value">{dataSource.title}</span>
+        </el-col>
+        <el-col :span="24" :lg="12" class="info-item">
+          <span class="info-item-label">店铺名称：</span>
+          <span class="info-item-value">{dataSource.shopName}</span>
+        </el-col>
+        <el-col :span="24" :lg="12" class="info-item">
+          <span class="info-item-label">任务金额：</span>
+          <span class="info-item-value">¥ {dataSource.amount}</span>
+        </el-col>
+        <el-col :span="24" :lg="12" class="info-item">
+          <span class="info-item-label">任务赏金：</span>
+          <span class="info-item-value">¥ {dataSource.bounty}</span>
+        </el-col>
+        <el-col :span="24" :lg="12" class="info-item">
+          <span class="info-item-label">接单时间：</span>
+          <span class="info-item-value">{dataSource.orderTime}</span>
+        </el-col>
+        <el-col :span="24" :lg="12" class="info-item">
+          <span class="info-item-label">交付时间：</span>
+          <span class="info-item-value">
+            {dataSource.deliveryTime}
+          </span>
+        </el-col>
+      </el-row>
+    </div>
+    <div class="container-block">
+      <h4>更多信息</h4>
+      <el-row class="info-items">
+              <el-col :span="24" :lg="12" class="info-item">
+                <span class="info-item-label">联系方式：</span>
+                <span class="info-item-value">{dataSource.phone}</span>
+              </el-col>
+              <el-col :span="24" :lg="12" class="info-item">
+                <span class="info-item-label">收货地址：</span>
+                <span class="info-item-value">{dataSource.address}</span>
+              </el-col>
+              <el-col :span="24" :lg="12" class="info-item">
+                <span class="info-item-label">任务状态：</span>
+                <span class="info-item-value">{dataSource.status}</span>
+              </el-col>
+              <el-col :span="24" :lg="12" class="info-item">
+                <span class="info-item-label">备注：</span>
+                <span class="info-item-value">{dataSource.remark}</span>
+              </el-col>
+              <el-col :span="24" :lg="12" class="info-item">
+                <span class="attach-label">附件：</span>
+                <span>
+                   <img src="/static/images/user/face.jpg" alt="图片" class="attach-pics">
+                </span>
+              </el-col>
+            </el-row>
+    </div>
+    <div class="container-block">
+      <h4>操作日志</h4>
+    </div>
+  </div>
+  <div class="user-right">
+    <div class="container-block">
+      <h4>照片信息</h4>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import {
+  mapGetters
+} from "vuex";
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   computed: {
     ...mapGetters({
@@ -88,5 +99,53 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less">
+.demo {
+  &-user {
+    .info {
+      &-items {
+        padding: 0px;
+        margin-left: 15px;
+      }
+      &-item {
+        margin-bottom: 18px;
+        list-style: none;
+        font-size: 14px;
+        &-label {
+          min-width: 70px;
+          color: #999;
+        }
+        &-value {
+          color: #333;
+        }
+      }
+    }
+    .attach{
+      &-label{
+        min-width: 70px;
+        color: #999;
+        float: left;
+      }
+      &-pics{
+        width: 80px;
+        height: 80px;
+        border: 1px solid #eee;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.user {
+  padding: 10px;
+  &-left {
+    padding-right: 310px;
+  }
+  &-right {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 300px;
+  }
+}
 </style>

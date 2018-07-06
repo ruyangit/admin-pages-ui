@@ -6,7 +6,7 @@
             <i class="el-icon-d-caret nav-fold un" @click="bodyMini=!bodyMini"></i>
         </div>
         <el-scrollbar class="body-left-nav">
-            <el-tree :data="treeData" :props="treeProps" @node-click="handleNodeClick" :default-expand-all="true"></el-tree>
+            <el-tree :data="treeData" :props="treeProps" @node-click="handleNodeClick" :default-expand-all="true" :highlight-current="true"></el-tree>
         </el-scrollbar>
     </div>
     <div class="body-fold" @click="bodyMini=!bodyMini">
@@ -42,8 +42,13 @@ export default {
   },
   methods: {
     handleNodeClick(data) {
-      console.log(data);
-    }
+      if(!data.children&&data.url){
+        console.log(data.url);
+        this.$router.push({
+        path: data.url
+      });
+        }
+      }
   }
 };
 </script>
@@ -62,6 +67,7 @@ export default {
       text-indent: 20px;
       height: 60px;
       line-height: 60px;
+      font-size: 14px;
       .nav-fold {
         position: absolute;
         right: 15px;
@@ -85,6 +91,9 @@ export default {
       .el-scrollbar__wrap {
         overflow-x: auto;
       }
+    }
+    .el-tree-node__label{
+      font-size: 12px;
     }
   }
   &-main {

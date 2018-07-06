@@ -9,7 +9,7 @@ import { sync } from 'vuex-router-sync'
 import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
 import '@/styles/default.less';
-import '@/styles/components/user/index.less';
+import '@/styles/components/user.less';
 
 import RuLayout from '@/components/layout/index.vue';
 // import MainHeader from '@/components/header/index.vue';
