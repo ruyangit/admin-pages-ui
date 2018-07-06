@@ -2,7 +2,10 @@
 
 #### 项目介绍
  ![image](https://ruyangit.github.io/bgs/home.png)
+
  ![image](https://ruyangit.github.io/bgs/user.png)
+ 
+ ![image](https://ruyangit.github.io/bgs/address.png)
 #### 软件架构
 软件架构说明
 
