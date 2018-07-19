@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Message, MessageBox} from 'element-ui'
+import { Message, MessageBox } from 'element-ui'
 import { getCookies, removeCookies } from '@/utils/cookies'
 import _CONST from '@/utils/globalConfig'
 import qs from 'qs';
@@ -11,6 +11,7 @@ const service = axios.create({
     // responseType: "json",
     crossDomain: true,
     xhrFields: { withCredentials: true },
+    headers: { 'X-Requested-With': 'XMLHttpRequest' },
     // headers: {
     //     "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
     // }
@@ -43,22 +44,29 @@ service.interceptors.request.use(config => {
 // respone interceptor
 service.interceptors.response.use(
     response => {
+        if (response.data) {
+            const { code, data } = response.data
+            if (code === 0) {
+                return data;
+            }
+        }
+        return Promise.reject(response);
+    },
+    error => {
         /**
         * 下面的注释为通过response自定义code来标示请求状态，当code返回如下情况为权限有问题，登出并返回到登录页
         * 如通过xmlhttprequest 状态码标识 逻辑可写在下面error中
         */
-        const res = response.data;
-        // console.log(response);
-        if (res.code !== 200) {
-            Message({
-                message: res.message,
-                type: 'error',
-                duration: 5 * 1000
-            });
+        const res = error.response;
 
+        if (res.data) {
+            const { code, error, error_description } = res.data;
+            // console.info(code)
+            // console.info(error)
+            // console.info(error_description)
             // 100401:非法的token; 100412:其他客户端登录了;  100413:Token 过期了;
-            if (res.code === 100401 || res.code === 100412 || res.code === 100413) {
-                MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
+            if (code === 100401 || code === 100412 || code === 100413) {
+                MessageBox.confirm('操作失败，原因：' + error + '，可以取消继续留在该页面，或者重新登录', '操作提示', {
                     confirmButtonText: '重新登录',
                     cancelButtonText: '取消',
                     type: 'warning'
@@ -66,19 +74,14 @@ service.interceptors.response.use(
                     removeCookies(_CONST.TOKEN);
                     location.reload();// 为了重新实例化vue-router对象 避免bug
                 })
+            } else {
+                Message({
+                    message: error,
+                    type: 'error',
+                    duration: 5 * 1000
+                })
             }
-            return Promise.reject(res);
-        } else {
-            return response;
         }
-    },
-    error => {
-        console.log('err' + error)// for debug
-        Message({
-            message: error.message,
-            type: 'error',
-            duration: 5 * 1000
-        })
         return Promise.reject(error)
     })
 

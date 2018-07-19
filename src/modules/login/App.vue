@@ -13,11 +13,11 @@
             <div class="container">
                 <el-form ref="form" :model="form" :rules="rules">
                     <div class="logo"><svg-icon type="dx-logo" className="svg"/></div>
-                    <el-form-item prop="loginName">
-                        <el-input v-model="form.loginName" placeholder="邮箱账户"></el-input>
+                    <el-form-item prop="username">
+                        <el-input v-model="form.username" placeholder="账户名称"></el-input>
                     </el-form-item>
                     <el-form-item prop="password">
-                        <el-input type="password" placeholder="邮箱密码" v-model="form.password">
+                        <el-input type="password" placeholder="账户密码" v-model="form.password">
                             <a slot="append" class="forget" href="javascript:;">忘记密码？</a>
                         </el-input>
                     </el-form-item>
@@ -32,7 +32,7 @@
                     </el-form-item>
                 </el-form>
             </div>
-            <div class="copyright">© 2018 天富星-移动端快速构建平台 版权所有 复星金服</div>
+            <div class="copyright">© 2018 权限管理快速构建平台 版权所有 复星金服</div>
         </div>
     </el-container>
 </template>
@@ -43,21 +43,16 @@ export default {
   data() {
     return {
       form: {
-        loginName: "ruyang@fosun.com",
-        password: "1"
+        username: "admin",
+        password: "123456"
         // captchaImage: ""
       },
       rules: {
-        loginName: [
+        username: [
           {
             required: true,
-            message: "请输入邮箱账户",
+            message: "请输入账户名称",
             trigger: "blur"
-          },
-          {
-            type: "email",
-            message: "请输入正确的邮箱格式",
-            trigger: ["blur", "change"]
           }
         ]
       },
@@ -69,7 +64,9 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.fullscreenLoading = true;
-          this.$store.dispatch("login", this.form).then(() => {
+          this.$store
+            .dispatch("login", this.form)
+            .then(() => {
               this.fullscreenLoading = false;
               if (this.$route.query.redirect) {
                 let redirect = decodeURIComponent(this.$route.query.redirect);

@@ -16,11 +16,11 @@ const store = new Vuex.Store({
     actions: {
         ['login']({ commit, dispatch }, user) {
 
-            const loginName = user.loginName.trim()
+            const username = user.username.trim()
 
             return new Promise((resolve, reject) => {
-                login(loginName, user.password).then(response => {
-                    const { data: { result: { access_token }, code } } = response
+                login(username, user.password).then(response => {
+                    const { access_token, expires_in, token_type } = response
                     //存储登录信息
                     setCookies(_CONST.TOKEN, access_token)
 
@@ -33,9 +33,9 @@ const store = new Vuex.Store({
             })
         },
         async ['userInfo']({ commit }) {
-            const { data: { result, code } } = await userInfo();
-            if (result && code === 200) {
-                setStore(_CONST.USER_INFO, result)
+            const response = await userInfo();
+            if (response) {
+                setStore(_CONST.USER_INFO, response)
             }
         },
     }

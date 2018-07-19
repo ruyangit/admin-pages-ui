@@ -11,11 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
-        target: 'http://192.168.82.1:9999',
+      '/seed': {
+        target: 'http://localhost:9999',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '/api'
+          '^/seed': '/seed'
         }
       }
     },
