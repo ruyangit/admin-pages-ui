@@ -2,8 +2,6 @@
  * 存储localStorage
  */
 export const setStore = (key, value) => {
-    console.info(key)
-    console.info(value)
     if (!key) return
     if (typeof value !== 'string') {
         value = JSON.stringify(value)
