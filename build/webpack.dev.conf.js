@@ -36,7 +36,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         { from: /\/notification$/, to: '/notification/index.html' },
         { from: /\/user$/, to: '/user/index.html' },
         { from: /\/data$/, to: '/data/index.html' },
-        { from: /\/openapi$/, to: '/data/index.html' }
+        { from: /\/openapi$/, to: '/openapi/index.html' },
+        { from: /\/g2$/, to: '/g2/index.html' }
       ],
     },
     hot: true,

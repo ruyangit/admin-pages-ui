@@ -72,6 +72,12 @@
                 <span class="sidebar-item-label">注册</span>
               </a>
           </li>
+          <li class="sidebar-nav-item">
+            <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-11'}" href="/g2">
+                <i class="el-icon-sold-out"></i>
+                <span class="sidebar-item-label">G2</span>
+              </a>
+          </li>
         </ul>
       </el-scrollbar>
       <div class="sidebar-footer" @click="sidebarMini=!sidebarMini">

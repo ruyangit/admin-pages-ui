@@ -37,7 +37,8 @@ const baseWebpackConfig = {
    */
   externals: {
     vue: 'Vue',
-    'element-ui': 'ELEMENT'
+    'element-ui': 'ELEMENT',
+    'g2': 'G2'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
