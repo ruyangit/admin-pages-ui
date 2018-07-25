@@ -19,9 +19,9 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-          <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-3'}" href="/charts">
+          <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-3'}" href="/openapi">
               <i class="el-icon-refresh"></i>
-              <span class="sidebar-item-label">统计报表</span>
+              <span class="sidebar-item-label">OpenApi</span>
             </a>
         </li>
       </ul>
@@ -37,7 +37,7 @@
               </a>
           </li>
           <li class="sidebar-nav-item">
-            <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-5'}" href="#">
+            <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-5'}" href="/openapi#/meitu/0">
                 <i class="el-icon-picture-outline"></i>
                 <span class="sidebar-item-label">图库图片</span>
               </a>
@@ -91,10 +91,10 @@
           </el-menu-item> -->
           <el-submenu index="2" >
             
-            <span slot="title">金融产品</span>
+            <span slot="title">快捷操作</span>
             <div style="width:450px">
               <div style="padding: 18px 20px;border-bottom: 1px solid #ebeef5;">
-                <span>产品列表</span>
+                <span>功能列表</span>
                 <el-button style="float: right; padding: 2px 0" type="text">设置</el-button>
               </div>
             </div>
