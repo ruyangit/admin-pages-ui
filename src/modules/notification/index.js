@@ -11,14 +11,12 @@ import ElementUI from 'element-ui';
 import '@/styles/default.less';
 // import '@/styles/components/user/index.less';
 
-import MainHeader from '@/components/header/index.vue';
 import SvgIcon from '@/components/svg-icon/index.vue';
 
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
-Vue.component(MainHeader.name, MainHeader);
 Vue.component(SvgIcon.name, SvgIcon);
 
 // sync(store, router)

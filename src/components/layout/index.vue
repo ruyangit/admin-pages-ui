@@ -33,22 +33,22 @@
           <li class="sidebar-nav-item">
             <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-4'}"  href="/home">
                 <i class="el-icon-phone-outline"></i>
-                <span class="sidebar-item-label">通讯录</span>
+                <span class="sidebar-item-label">我的工作台</span>
               </a>
           </li>
           <li class="sidebar-nav-item">
             <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-5'}" href="/openapi#/meitu/0">
                 <i class="el-icon-picture-outline"></i>
-                <span class="sidebar-item-label">图库图片</span>
+                <span class="sidebar-item-label">美图诱诱</span>
               </a>
           </li>
           <li class="sidebar-nav-item">
-            <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-6'}" href="#">
+            <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-6'}" href="/components">
                 <i class="el-icon-star-off"></i>
-                <span class="sidebar-item-label">智能收藏</span>
+                <span class="sidebar-item-label">组件仓库</span>
               </a>
           </li>
-          <li class="sidebar-nav-item">
+          <!-- <li class="sidebar-nav-item">
             <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-7'}" href="/data">
                 <i class="el-icon-goods"></i>
                 <span class="sidebar-item-label">列表</span>
@@ -59,23 +59,29 @@
                 <i class="el-icon-printer"></i>
                 <span class="sidebar-item-label">表单</span>
               </a>
-          </li>
+          </li> -->
           <li class="sidebar-nav-item">
             <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-9'}" href="/login">
                 <i class="el-icon-upload"></i>
                 <span class="sidebar-item-label">登录</span>
               </a>
           </li>
-          <li class="sidebar-nav-item">
+          <!-- <li class="sidebar-nav-item">
             <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-10'}" href="/register">
                 <i class="el-icon-sold-out"></i>
                 <span class="sidebar-item-label">注册</span>
               </a>
-          </li>
+          </li> -->
           <li class="sidebar-nav-item">
             <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-11'}" href="/g2">
                 <i class="el-icon-sold-out"></i>
                 <span class="sidebar-item-label">G2</span>
+              </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a class="sidebar-item" :class="{'actived':sidebarActive==='sb-12'}" href="/data">
+                <i class="el-icon-location-outline"></i>
+                <span class="sidebar-item-label">使用说明</span>
               </a>
           </li>
         </ul>

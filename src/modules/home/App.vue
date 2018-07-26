@@ -1,5 +1,5 @@
 <template>
-<ru-layout id="app" sidebarActive="sb-0" mainBodyPadding="10px" :normalFooter="true">
+<ru-layout id="app" sidebarActive="sb-4" mainBodyPadding="10px" :normalFooter="true">
 
   <div style="padding-right:310px;">
     <div class="container-block demo-wgd">

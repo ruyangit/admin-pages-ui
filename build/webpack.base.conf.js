@@ -22,7 +22,6 @@ const entris = require('./entris')
 const baseWebpackConfig = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    vendors: ['vue']
   },
   output: {
     path: config.build.assetsRoot,
@@ -38,16 +37,13 @@ const baseWebpackConfig = {
   externals: {
     vue: 'Vue',
     'element-ui': 'ELEMENT',
-    'g2': 'G2'
+    // 'g2': 'G2'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
-      '~login': resolve('src/modules/login'),
-      '~user': resolve('src/modules/user'),
-      '~notification': resolve('src/modules/notification'),
+      '@': resolve('src')
     }
   },
   module: {
@@ -65,7 +61,7 @@ const baseWebpackConfig = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
-		exclude: [resolve('src/icons/svg')], // 默认不处理该文件夹的命中的文件
+        exclude: [resolve('src/icons/svg')], // 默认不处理该文件夹的命中的文件
         options: {
           limit: 10000,
           name: utils.assetsPath('images/[name].[hash:7].[ext]')
@@ -86,6 +82,10 @@ const baseWebpackConfig = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.json$/,
+        use: 'json-loader'
       },
       {
         test: /\.(svg)$/i,

@@ -6,16 +6,15 @@
         <el-col :span="24" id="c2" class="grid-content"></el-col>
         <el-col :span="24" id="c3" class="grid-content"></el-col>
         <el-col :span="12" id="c4" class="grid-content"></el-col>
-        <!-- <el-col :span="12">
-          <div class="grid-content bg-purple">5</div>
-        </el-col> -->
+        <el-col :span="12" id="c5" class="grid-content"></el-col>
+        <el-col :span="24" id="c6" class="grid-content"></el-col>
       </el-row>
     </div>
   </ru-layout>
 </template>
 
 <script>
-import G2 from "g2";
+// import G2 from "g2";
 export default {
   name: "App",
   data() {
@@ -24,6 +23,8 @@ export default {
       chart2: null,
       chart3: null,
       chart4: null,
+      chart5: null,
+      chart6: null,
       data:[
         { genre: 'Sports', sold: 275 },
         { genre: 'Strategy', sold: 115 },
@@ -34,7 +35,7 @@ export default {
         { genre: 'A3', sold: 375 },
         { genre: 'A4', sold: 155 },
         { genre: 'A5', sold: 415 },
-        { genre: 'A6', sold: 55 },
+        { genre: 'A6', sold: 155 },
         { genre: 'Other', sold: 150 }
       ],
        data2:[
@@ -46,6 +47,91 @@ export default {
     };
   },
   methods: {
+    drawChartC6(datas) {
+      this.chart6 && this.chart6.destroy();
+      let data = datas;
+
+      this.chart6 = new G2.Chart({
+        id: 'c6',
+        height: 450,
+        width: 1000,
+      });
+      // Step 2: 载入数据源
+      this.chart6.source(data);
+      this.chart6.scale({
+        sold: {
+          min: 100
+        },
+        genre: {
+          range: [0, 1]
+        }
+      });
+      this.chart6.axis('sold', {
+        label: {
+          formatter: function formatter(val) {
+            return (val / 10000).toFixed(1) + 'k';
+          }
+        }
+      });
+      this.chart6.tooltip({
+        crosshairs: {
+          type: 'line'
+        }
+      });
+      this.chart6.area().position('genre*sold');
+      this.chart6.line().position('genre*sold').size(2);
+      this.chart6.render();
+    },
+    drawChartC5(datas) {
+      this.chart5 && this.chart5.destroy();
+      let data = datas;
+
+      this.chart5 = new G2.Chart({
+        id: 'c5',
+        height: 450,
+        forceFit: true,
+      });
+      // Step 2: 载入数据源
+      this.chart5.source(data,{
+        sold: {
+          formatter: function formatter(val) {
+            val = val + '%';
+            return val;
+          }
+        }
+      });
+      this.chart5.coord('theta', {
+        radius: 0.75,
+        // innerRadius: 0.6
+      });
+      this.chart5.tooltip({
+        showTitle: false,
+        itemTpl: '<li><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}: {value}</li>'
+      });
+      this.chart5.intervalStack().position('sold').color('genre').label('sold', {
+          formatter: function formatter(val, item) {
+            return item.point.genre + '\n ' + val;
+          },
+          offset: -40,
+          // autoRotate: false,
+          textStyle: {
+            rotate: 0,
+            textAlign: 'center',
+            shadowBlur: 2,
+            shadowColor: 'rgba(0, 0, 0, .45)'
+          }
+      }).tooltip('genre*sold', function(genre, sold) {
+        sold = sold + '%';
+        return {
+          name: genre,
+          value: sold
+        };
+      }).style({
+        lineWidth: 1,
+        stroke: '#fff'
+      });
+      this.chart5.render();
+    },
     drawChartC4(datas) {
       this.chart4 && this.chart4.destroy();
       let data = datas;
@@ -171,7 +257,8 @@ export default {
     this.drawChartC2(this.data);
     this.drawChartC3(this.data);
     this.drawChartC4(this.data2);
-    // this.drawChartC1(this.data,"c2");
+    this.drawChartC5(this.data2);
+    this.drawChartC6(this.data);
   }
 };
 </script>

@@ -37,7 +37,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         { from: /\/user$/, to: '/user/index.html' },
         { from: /\/data$/, to: '/data/index.html' },
         { from: /\/openapi$/, to: '/openapi/index.html' },
-        { from: /\/g2$/, to: '/g2/index.html' }
+        { from: /\/g2$/, to: '/g2/index.html' },
+        { from: /\/components$/, to: '/components/index.html' }
       ],
     },
     hot: true,
@@ -81,7 +82,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 })
 
 Object.keys(entris).forEach(function (entry) {
-  console.log(entry);
+  // console.log(entry);
   devWebpackConfig.plugins.push(
     new HtmlWebpackPlugin({
       isProd: false,

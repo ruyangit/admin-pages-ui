@@ -87,9 +87,16 @@ const webpackConfig = merge(baseWebpackConfig, {
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
-      filename: 'vendors.[chunkhash:7].js',
-      minChunks(module) {
-        // any required modules inside node_modules are extracted to vendor
+      filename: '[name].[chunkhash:7].js',
+      minChunks(module, count) {
+        if (module.resource &&
+          /\.js$/.test(module.resource) &&
+          module.resource.indexOf(
+            path.join(__dirname, '../node_modules')
+          ) === 0) {
+          console.log(module.resource, `import：${count}`);
+          //"有正在处理文件" + "这个文件是 .js 后缀" + "这个文件是在 node_modules 中"
+        }
         return (
           module.resource &&
           /\.js$/.test(module.resource) &&
@@ -148,10 +155,28 @@ if (config.build.bundleAnalyzerReport) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
-
 Object.keys(entris).forEach(function (entry) {
   // const chunks = ['manifest', 'vendors', entry]
-  const chunks = ['vendors', entry]
+  
+  // const r2 = require(`../src/modules/` + entry + '/r2.json')
+
+  // webpackConfig.plugins.push(
+  //   new webpack.optimize.CommonsChunkPlugin({
+  //     name: 'axios',
+  //     filename: '[name].[chunkhash:7].js',
+  //     chunks: ['vendors'],
+  //     minChunks(module, count) {
+  //       return (
+  //         module.resource &&
+  //         /\.js$/.test(module.resource) &&
+  //         module.resource.indexOf(
+  //           path.join(__dirname, '../node_modules/axios')
+  //         ) === 0
+  //       )
+  //     }
+  //   })
+  // )
+  const chunks = ['vendors',  entry]
   webpackConfig.plugins.push(
     new HtmlWebpackPlugin({
       isProd: true,
